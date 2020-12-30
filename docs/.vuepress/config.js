@@ -38,7 +38,16 @@ module.exports = {
                     path: '/pages/webpack/plugin.md'
                 }
             ]
-        }
+          },
+          {
+            title: '移动端开发',
+            children: [
+                {
+                    title: 'jsbridge远离浅析',
+                    path: '/pages/hybrid/jsbridge.md'
+                }
+            ]
+          }
       ]
   }
 }
