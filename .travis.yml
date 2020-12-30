@@ -1,0 +1,21 @@
+language: node_js
+
+sudo: false
+
+cache:
+  apt: true
+  directories:
+    - node_modules
+
+node_js: stable
+
+install:
+  - npm install -D
+
+script:
+  - npm run docs:build
+  - cd docs/.vuepress/dist
+  - git add -A
+  - git commit -m 'deploy'
+  - git push -f https://github.com/matf5/matt-blog.git master:gh-pages
+   
