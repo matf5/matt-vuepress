@@ -18,5 +18,5 @@ script:
   - git init
   - git add -A
   - git commit -m 'deploy'
-  - git push -f "https://${GIT_TOKEN}/matf5/matt-blog.git" master:gh-pages
+  - git push -f "https://{GIT_TOKEN}@github.com/matf5/matt-blog.git" master:gh-pages
    
