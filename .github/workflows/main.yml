@@ -15,11 +15,11 @@ jobs:
 
     #发布到mybells.github.io/master
     - name: Deploy mybells.github.io/master
-      uses: peaceiris/actions-gh-pages@v2
+      uses: JamesIves/github-pages-deploy-action@4.1.5
       env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACCESS_TOKEN }}
-        EXTERNAL_REPOSITORY: matf5/matt-blog #可以新建一个mybells.github.io仓库发布到master
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: docs/.vuepress/dist
+        token: ${{ secrets.ACCESS_TOKEN }}
+        repository-name: matf5/matt-blog #可以新建一个mybells.github.io仓库发布到master
+        branch: gh-pages
+        folder: docs/.vuepress/dist
       with:
           emptyCommits: false
