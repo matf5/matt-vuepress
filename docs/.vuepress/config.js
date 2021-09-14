@@ -40,14 +40,23 @@ module.exports = {
             ]
           },
           {
-            title: '移动端开发',
+            title: 'hybrid',
             children: [
                 {
-                    title: 'jsbridge远离浅析',
+                    title: 'jsbridge原理浅析',
                     path: '/pages/hybrid/jsbridge.md'
                 }
             ]
-          }
+          },
+          {
+            title: 'react-native',
+            children: [
+                {
+                    title: 'react-native启动过程分析(Android)',
+                    path: '/pages/react-native/react-native启动原理探究(Android）.md'
+                }
+            ]
+        },
       ]
   }
 }
