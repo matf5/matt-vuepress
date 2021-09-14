@@ -1,5 +1,6 @@
 # jsbridge
 
+
 ## 实现原理
 ![image.png](https://cdn.nlark.com/yuque/0/2020/png/544808/1599738161713-b869832a-ba79-4853-9408-6ec9cd584efc.png#align=left&display=inline&height=542&margin=%5Bobject%20Object%5D&name=image.png&originHeight=542&originWidth=1268&size=186557&status=done&style=none&width=1268)
 
