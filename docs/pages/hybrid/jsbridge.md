@@ -2,7 +2,7 @@
 
 
 ## 实现原理
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/544808/1599738161713-b869832a-ba79-4853-9408-6ec9cd584efc.png#align=left&display=inline&height=542&margin=%5Bobject%20Object%5D&name=image.png&originHeight=542&originWidth=1268&size=186557&status=done&style=none&width=1268)
+![](https://raw.githubusercontent.com/matf5/fileCache/master/image/shorcutimage.png)
 
 
 JavaScript 是运行在一个单独的 JS Context 中（例如，WebView 的 Webkit 引擎、JSCore）。由于这些 Context 与原生运行环境的天然隔离，我们可以将这种情况与 RPC（Remote Procedure Call，远程过程调用）通信进行类比，将 Native 与 JavaScript 的每次互相调用看做一次 RPC 调用。
