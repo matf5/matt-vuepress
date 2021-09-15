@@ -54,9 +54,13 @@ module.exports = {
                 {
                     title: 'react-native启动过程分析(Android)',
                     path: '/pages/react-native/react-native启动原理探究(Android）.md'
+                },
+                {
+                    title: 'react-native bridge原理探究',
+                    path: '/pages/react-native/react-native bridge原理探究.md'
                 }
             ]
-        },
+          },
       ]
   }
 }
