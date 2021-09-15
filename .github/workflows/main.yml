@@ -13,8 +13,8 @@ jobs:
     - run: npm ci # 相当于npm install
     - run: npm run docs:build
 
-    #发布到mybells.github.io/master
-    - name: Deploy mybells.github.io/master
+    #发布到matf5.github.io
+    - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.5
       with:
         token: ${{ secrets.ACCESS_TOKEN }}
