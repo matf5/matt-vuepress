@@ -77,5 +77,5 @@ JavaScript 端可以确定 JSBridge 的存在，直接调用即可。
 #### 缺点
 如果桥的实现方式有更改，JSBridge 需要兼容多版本的 Native Bridge 或者 Native Bridge 兼容多版本的 JSBridge。
 
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/544808/1599740910037-a9951751-9b23-4ad4-80bd-d7b41780d185.png#align=left&display=inline&height=574&margin=%5Bobject%20Object%5D&name=image.png&originHeight=574&originWidth=1422&size=89582&status=done&style=none&width=1422)
+![](https://gitee.com/matf5/file-cache/raw/master/image/picgo/20210918104950.png)
 #### 
