@@ -48,6 +48,15 @@ module.exports = {
                 }
             ]
           },
+         {
+            title: 'performance',
+            children: [
+                {
+                    title: '图片懒加载',
+                    path: '/pages/performance/image-lazy.md'
+                }
+            ]
+         }, 
           {
             title: 'react-native',
             children: [
