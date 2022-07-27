@@ -22,6 +22,15 @@ module.exports = {
               ]
           },
           {
+            title: 'react',
+            children: [
+                {
+                    title: 'react组件增加标识',
+                    path: '/pages/react/react组件增加标识.md'
+                }
+            ]
+        },
+          {
               title: 'vue3学习',
               children: [
                   {
