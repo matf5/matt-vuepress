@@ -85,12 +85,12 @@ var Foo = /*#__PURE__*/function (_React$Component) {
   return _createClass(Foo);
 }(React.Component);
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/544808/1658669468057-54b4fa59-fbba-4264-b301-9f049ccc8c79.png#clientId=uce3280a2-bf05-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=645&id=u1122c8ca&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1290&originWidth=976&originalType=binary&ratio=1&rotation=0&showTitle=false&size=160044&status=done&style=none&taskId=ubc74c7de-a74a-452d-8566-fc11f4cc1ca&title=&width=488)
+![](https://raw.githubusercontent.com/matf5/fileCache/master/image/shorcut20220728104409.png)
 在这里我们可以看到已经出现了对应的情况
 即
 
 1. 其是一个function的表达式
-1. 对于函数中的第一个参数可以通过正则表达式取出来, 因此我们可以断定以下条件
+2. 对于函数中的第一个参数可以通过正则表达式取出来, 因此我们可以断定以下条件
 
 ```javascript
 // 1 是一个定义
@@ -106,7 +106,7 @@ node.init.callee.params.[0].type === 'Identifier' && /(_React\$Component)|(_Comp
 ```
 #### 未经过babel转译
 此时仍然是class的定义
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/544808/1658670916351-9421bae9-711b-43ed-90aa-523929d34fca.png#clientId=uce3280a2-bf05-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=699&id=ue6df682d&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1398&originWidth=1218&originalType=binary&ratio=1&rotation=0&showTitle=false&size=170875&status=done&style=none&taskId=u39520608-c1f0-4680-9dc4-5958b46cd92&title=&width=609)
+![](https://raw.githubusercontent.com/matf5/fileCache/master/image/shorcut20220728104505.png)
 这里是React.xx(Component或者PureComponent)的场景, 也有可能是直接xx的情况
 因此判断条件为
 ```javascript
@@ -140,7 +140,7 @@ function a () {
 }
 ```
  AST解析出来是这样的
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/544808/1658672340509-a1084c4e-7a0c-4e76-8184-88449894f09c.png#clientId=uce3280a2-bf05-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=790&id=u902ffbf1&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1580&originWidth=1312&originalType=binary&ratio=1&rotation=0&showTitle=false&size=232433&status=done&style=none&taskId=ud7f99622-0c7b-4ccd-b79a-df5f7b17b13&title=&width=656)
+![](https://raw.githubusercontent.com/matf5/fileCache/master/image/shorcut20220728104532.png)
 对于这种情况, 进行如下步骤
 
 1. 找到某个表达式, 其object.name 为React 且其property.name为createElement
