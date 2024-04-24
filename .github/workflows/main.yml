@@ -31,7 +31,7 @@ jobs:
 
       #发布到matf5.github.io
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v1
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           repository-name: matf5/matt-blog #可以新建一个mybells.github.io仓库发布到master
