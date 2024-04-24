@@ -2,15 +2,12 @@ language: node_js
 
 sudo: false
 
-cache:
-  apt: true
-  directories:
-    - node_modules
+cache: yarn
 
 node_js: stable
 
 install:
-  - yarn
+  - yarn install
 
 script:
   - yarn run docs:build
