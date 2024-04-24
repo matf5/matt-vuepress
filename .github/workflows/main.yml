@@ -7,6 +7,7 @@ on:
 
 jobs:
   build-deploy:
+    name: build-and-deploy
     runs-on: ubuntu-latest
     steps:
       - name: Clone Code
@@ -15,23 +16,22 @@ jobs:
           # "最近更新时间"等 git 日志相关信息，需要拉取全部提交记录
           fetch-depth: 0
 
-      # 安装 Node 环境
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        # 选择要使用的 node 版本
-        node-version: '16'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          # 选择要使用的 node 版本
+          node-version: '16'
 
-    - name: build
-      run: npm install --package-lock # 相当于npm install
-      run: npm run docs:build
+      - name: build
+        run: npm install --package-lock # 相当于npm install
+        run: npm run docs:build
 
 
-    #发布到matf5.github.io
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        token: ${{ secrets.ACCESS_TOKEN }}
-        repository-name: matf5/matt-blog #可以新建一个mybells.github.io仓库发布到master
-        branch: gh-pages
-        folder: docs/.vuepress/dist
+      #发布到matf5.github.io
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          repository-name: matf5/matt-blog #可以新建一个mybells.github.io仓库发布到master
+          branch: gh-pages
+          folder: docs/.vuepress/dist
