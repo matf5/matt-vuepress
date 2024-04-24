@@ -10,10 +10,10 @@ cache:
 node_js: stable
 
 install:
-  - npm install
+  - yarn
 
 script:
-  - npm run docs:build
+  - yarn run docs:build
   - cd docs/.vuepress/dist
   - git init
   - git add -A
