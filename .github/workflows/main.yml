@@ -9,9 +9,23 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - run: npm install --package-lock # 相当于npm install
-    - run: npm run docs:build
+      - name: Clone Code
+        uses: actions/checkout@v3
+        with:
+          # "最近更新时间"等 git 日志相关信息，需要拉取全部提交记录
+          fetch-depth: 0
+
+      # 安装 Node 环境
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        # 选择要使用的 node 版本
+        node-version: '16'
+
+    - name: build
+      run: npm install --package-lock # 相当于npm install
+      run: npm run docs:build
+
 
     #发布到matf5.github.io
     - name: Deploy
