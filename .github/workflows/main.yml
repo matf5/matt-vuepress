@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - run: npm ci # 相当于npm install
+    - run: npm install --package-lock # 相当于npm install
     - run: npm run docs:build
 
     #发布到matf5.github.io
