@@ -22,8 +22,10 @@ jobs:
           # 选择要使用的 node 版本
           node-version: '16'
 
-      - name: build
+      - name: insatll dependencies
         run: npm install --package-lock # 相当于npm install
+      
+      - name: Build
         run: npm run docs:build
 
 
