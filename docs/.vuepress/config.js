@@ -83,6 +83,15 @@ module.exports = {
                     }
                 ]
             },
+            {
+                title: 'rust',
+                children: [
+                    {
+                        title: 'learn rust',
+                        path: '/pages/rust/rust.md'
+                    }
+                ]
+            }
         ]
     }
 }
