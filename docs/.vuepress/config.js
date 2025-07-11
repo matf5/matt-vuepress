@@ -9,7 +9,6 @@ module.exports = {
     themeConfig: {
         logo: '/cainiao.jpg',
         nav: [
-            { text: '首页', link: '/' }
         ],
         sidebar: [
             {
@@ -84,11 +83,80 @@ module.exports = {
                 ]
             },
             {
-                title: 'rust',
+                title: 'Rust 学习',
                 children: [
                     {
-                        title: 'learn rust',
-                        path: '/pages/rust/rust.md'
+                        title: 'Rust 学习指南',
+                        path: '/pages/rust/index.md'
+                    },
+                    {
+                        title: 'Rust 基础语法',
+                        path: '/pages/rust/basic-syntax.md'
+                    },
+                    {
+                        title: '所有权系统',
+                        path: '/pages/rust/ownership.md'
+                    },
+                    {
+                        title: '数据结构',
+                        path: '/pages/rust/data-structures.md'
+                    },
+                    {
+                        title: '集合类型',
+                        path: '/pages/rust/collections.md'
+                    },
+                    {
+                        title: '错误处理',
+                        path: '/pages/rust/error-handling.md'
+                    },
+                    {
+                        title: '泛型与特征',
+                        path: '/pages/rust/generics-and-traits.md'
+                    },
+                    {
+                        title: '函数式编程',
+                        path: '/pages/rust/functional-programming.md'
+                    },
+                    {
+                        title: '智能指针',
+                        path: '/pages/rust/smart-pointers.md'
+                    },
+                    {
+                        title: '工具与项目管理',
+                        path: '/pages/rust/tools-and-project.md'
+                    }
+                ]
+            },
+            {
+                title: 'Qwik 框架',
+                children: [
+                    {
+                        title: 'Qwik 学习指南',
+                        path: '/pages/qwik/index.md'
+                    },
+                    {
+                        title: 'Qwik 介绍',
+                        path: '/pages/qwik/qwik-introduction.md'
+                    },
+                    {
+                        title: 'Qwik 核心思想',
+                        path: '/pages/qwik/qwik-core-concepts.md'
+                    },
+                    {
+                        title: 'Qwik 原理',
+                        path: '/pages/qwik/qwik-principles.md'
+                    },
+                    {
+                        title: 'Qwik Optimizer',
+                        path: '/pages/qwik/qwik-optimizer.md'
+                    },
+                    {
+                        title: 'Qwik 拓展工具',
+                        path: '/pages/qwik/qwik-extension-tools.md'
+                    },
+                    {
+                        title: '学习总结',
+                        path: '/pages/qwik/summary.md'
                     }
                 ]
             }
