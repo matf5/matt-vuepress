@@ -84,11 +84,8 @@ module.exports = {
             },
             {
                 title: 'Rust 学习',
+                path: '/pages/rust',
                 children: [
-                    {
-                        title: 'Rust 学习指南',
-                        path: '/pages/rust/index.md'
-                    },
                     {
                         title: 'Rust 基础语法',
                         path: '/pages/rust/basic-syntax.md'
@@ -129,11 +126,8 @@ module.exports = {
             },
             {
                 title: 'Qwik 框架',
+                path: '/pages/qwik',
                 children: [
-                    {
-                        title: 'Qwik 学习指南',
-                        path: '/pages/qwik/index.md'
-                    },
                     {
                         title: 'Qwik 介绍',
                         path: '/pages/qwik/qwik-introduction.md'
