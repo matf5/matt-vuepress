@@ -55,20 +55,89 @@
 
 Vue 2 和 Vue 3 对 TSX 的支持存在**根本性**的差异，这主要源于它们底层数据响应式系统和组件 API 的不同（Options API vs Composition API）。
 
-| 特性 | Vue 2 + TSX | Vue 3 + TSX |
-| :--- | :--- | :--- |
-| **核心原理** | 基于 `@vue/babel-preset-jsx` 实现。与 Options API 深度绑定，强依赖 `this` 上下文来访问数据和方法。 | 作为**一等公民**进行支持。与 Composition API 完美结合，逻辑在 `setup` 函数中组织，完全不依赖 `this`。 |
-| **状态和逻辑** | 所有数据 (`data`) 和方法 (`methods`) 都必须从 `this` 上下文读取，如 `this.message`、`this.handleClick`。 | 状态通过 `ref`、`reactive` 创建，逻辑在 `setup` 中定义。代码组织更聚合，更易于复用。 |
-| **`v-model` 实现** | **相对复杂**。需要手动处理 `value` prop 和 `input` 事件，或依赖 Babel 插件进行转换。代码通常类似：`<Input value={this.value} onInput={e => this.value = e.target.value} />` | **简单直观**。遵循 `modelValue` prop 和 `onUpdate:modelValue` 事件的约定即可。Vue 3 的 JSX 转换也内置了对 `v-model` 的语法糖支持。 |
-| **插槽 (Slots)** | 通过 `this.$slots` 访问普通插槽，`this.$scopedSlots` 访问作用域插槽。API 分裂，容易混淆。 | 统一通过 `setup` 的 `context.slots` 或 `useSlots()` API 访问，API 一致且类型支持更好。在 JSX 中调用就像一个函数：`slots.default()` 或 `slots.header({ scopeValue })`。 |
-| **事件处理** | 事件需要写在 `on` 对象中，如 `on={{ click: this.handleClick }}`。原生DOM事件则需要 `nativeOn`。 | **与原生 HTML/React 一致**。事件直接以 `on` 前缀作为 prop 写入，如 `<button onClick={handleClick}></button>`。 |
-| **类型支持** | 相对薄弱，尤其在 Props、事件和插槽的类型推导上，往往需要开发者编写大量手动的类型定义和断言。 | **非常完善**。得益于 Composition API 和更强大的 TS 集成，Props、Emits、Slots 都能获得开箱即用的、精确的类型推断。 |
+<table >
+    <thead>
+        <tr>
+            <th align="left">特性</th>
+            <th align="left">Vue 2 + TSX</th>
+            <th align="left">Vue 3 + TSX</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td align="left"><strong>核心原理</strong></td>
+            <td align="left">最初基于 <code>@vue/babel-preset-jsx</code> 实现，与 Options API 结合。但自 <strong>Vue 2.7</strong> 起，官方内置了 Composition API，使其可以像 Vue 3 一样在 <code>setup</code> 函数中组织逻辑，<strong>不再强依赖 `this`</strong>。</td>
+            <td align="left">作为<strong>一等公民</strong>进行支持。与 Composition API 完美结合，逻辑在 <code>setup</code> 函数中组织，完全不依赖 <code>this</code>。</td>
+        </tr>
+        <tr>
+            <td align="left"><strong>状态和逻辑</strong></td>
+            <td align="left">在 Options API 模式下，数据和方法需从 <code>this</code> 读取。在 <strong>Vue 2.7+ 的 Composition API</strong> 模式下，则通过 <code>setup</code> 函数和 <code>ref</code>、<code>reactive</code> 管理状态，逻辑更内聚。</td>
+            <td align="left">状态通过 <code>ref</code>、<code>reactive</code> 创建，逻辑在 <code>setup</code> 中定义。代码组织更聚合，更易于复用。</td>
+        </tr>
+        <tr>
+            <td align="left"><strong><code>v-model</code> 实现</strong></td>
+            <td align="left"><strong>相对复杂</strong>。需要手动处理 <code>value</code> prop 和 <code>input</code> 事件，或依赖 Babel 插件进行转换。代码通常类似：<code>&lt;Input value={this.value} onInput={e => this.value = e.target.value} /&gt;</code></td>
+            <td align="left"><strong>简单直观</strong>。遵循 <code>modelValue</code> prop 和 <code>onUpdate:modelValue</code> 事件的约定即可。Vue 3 的 JSX 转换也内置了对 <code>v-model</code> 的语法糖支持。</td>
+        </tr>
+        <tr>
+            <td align="left"><strong>插槽 (Slots)</strong></td>
+            <td align="left">通过 <code>this.$slots</code> 访问普通插槽，<code>this.$scopedSlots</code> 访问作用域插槽。API 分裂，容易混淆。</td>
+            <td align="left">统一通过 <code>setup</code> 的 <code>context.slots</code> 或 <code>useSlots()</code> API 访问，API 一致且类型支持更好。在 JSX 中调用就像一个函数：<code>slots.default()</code> 或 <code>slots.header({ scopeValue })</code>。</td>
+        </tr>
+        <tr>
+            <td align="left"><strong>事件处理</strong></td>
+            <td align="left">事件需要写在 <code>on</code> 对象中，如 <span v-pre><code>on={{ click: this.handleClick }}</code></span>。原生DOM事件则需要 <code>nativeOn</code>。</td>
+            <td align="left"><strong>与原生 HTML/React 一致</strong>。事件直接以 <code>on</code> 前缀作为 prop 写入，如 <code>&lt;button onClick={handleClick}&gt;&lt;/button&gt;</code>。</td>
+        </tr>
+        <tr>
+            <td align="left"><strong>类型支持</strong></td>
+            <td align="left">相对薄弱，尤其在 Props、事件和插槽的类型推导上，往往需要开发者编写大量手动的类型定义和断言。</td>
+            <td align="left"><strong>非常完善</strong>。得益于 Composition API 和更强大的 TS 集成，Props、Emits、Slots 都能获得开箱即用的、精确的类型推断。</td>
+        </tr>
+    </tbody>
+</table>
 
 **小结**：Vue 3 的 TSX 开发体验**远胜于** Vue 2。它更现代化、类型支持更完善、心智模型也与 Composition API 高度统一，真正让 TSX 成为了一个在 Vue 生态中实用且强大的选项。
 
 ---
 
-## 3. 面试场景剖析
+## 3. 性能考量：模板编译优化 vs TSX
+
+选择 TSX，实际上也意味着在一定程度上放弃了 Vue 模板编译器所带来的大部分自动性能优化。这是一个重要的权衡。
+
+### Vue 模板的优化魔法
+
+Vue 的编译器非常智能，它在编译时会对模板进行静态分析，并植入多种优化策略，将模板转换成一个高度优化的渲染函数。
+
+1.  **静态提升 (Static Hoisting)**: 编译器会找到模板中所有静态不变的元素或属性，将它们的 VNode 创建过程提升到渲染函数之外。这意味着它们只会被创建一次，在后续的无数次重新渲染中都会被直接复用，完全跳过了 diff 过程。
+
+2.  **补丁标志 (Patch Flags)**: 对于动态的节点（例如，有动态绑定的 class 或文本内容），编译器会给它们打上“补丁标志”。这个标志精确地告诉运行时（runtime）这个节点只会发生哪种类型的变化（如 `PatchFlags.TEXT` 或 `PatchFlags.CLASS`）。在更新时，Vue 无需对节点进行完整的属性比对，而是“靶向”更新被标记的部分，效率极高。
+
+简单来说，Vue 模板编译器给运行时留下了一份详细的“作弊条”，让更新过程可以跳过大量不必要的比对工作。
+
+### TSX 的手动挡模式
+
+当您使用 TSX 时，Babel 或 TypeScript 只是简单地将其转换为一系列的 `h()` 函数调用（用于创建 VNode）。
+
+-   **缺乏静态分析**: 从编译器的角度看，所有的 `h()` 调用都是动态的。它无法预知你传入的参数是静态还是动态，因此无法进行静态提升或添加补丁标志。
+-   **全量 Diff**: 在每次组件重新渲染时，都需要完整地执行渲染函数，生成一棵全新的 VNode 树。运行时只能对新旧两棵树进行一次传统的、全量的 VNode diff，来找出差异。
+
+### 结论与权衡
+
+| 特性 | Vue 模板 (SFC) | Vue + TSX |
+| --- | --- | --- |
+| **优化策略** | **编译时自动优化**：编译器深度分析，给运行时提供“捷径”。 | **运行时优化**：主要依赖 VNode diff 算法。 |
+| **静态提升** | ✅ **自动** | ❌ **手动** (需开发者自行将常量移出渲染函数) |
+| **补丁标志** | ✅ **自动** | ❌ **无** (运行时需进行更全面的节点比对) |
+| **开发者角色** | 专注于业务逻辑，将性能优化的大部分工作交给编译器。 | 需要承担更多优化责任，通过 `useMemo` 等方式手动控制。 |
+
+**核心权衡**：使用 TSX 是用“**放弃一部分自动优化**”来换取“**获得完全的编程控制力**”。
+
+对于绝大多数应用，这种性能差异微乎其微，真正的性能瓶颈往往在别处。因此，技术选型应更多地基于**项目复杂度**、**开发体验**和**团队熟悉度**，而不是单纯地纠结于理论上的性能差异。
+
+---
+
+## 4. 面试场景剖析
 
 在面试中，面试官通过此问题通常想考察你对技术的**深度理解**、**选型决策能力**以及**实际应用经验**。
 
