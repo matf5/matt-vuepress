@@ -33,18 +33,13 @@
 #### a. 失去 Vue 特有的语法糖 (Loss of Vue-specific Syntax Sugar)
 
 -   **指令缺失**: `v-model`, `v-show`, `v-if`, `v-for` 等这些在模板中非常简洁高效的指令都无法直接使用，需要用原生 JSX 的方式去“模拟”。
-    -   `v-if` -> ```tsx
-      {condition && <div/>}
-      ```
+    -   `v-if` -> `{condition && <div/>}`
     -   `v-model` -> 手动传递 `value` 和 `onChange` 事件
 -   **修饰符缺失**: 如 `.prevent`, `.stop`, `.lazy` 这类便捷的事件和 `v-model` 修饰符也无法使用，需要开发者手动实现其逻辑。
 
 #### b. 代码更啰嗦 (More Verbose)
 
--   对于简单的场景，JSX 往往比模板需要编写更多的代码。例如，一个简单的 `v-for` 循环，在模板中一行就能解决，而用 JSX 则需要写成 
-```tsx
-    items.map(item => <div key={item.id}>{item.name}</div>)
-```
+-   对于简单的场景，JSX 往往比模板需要编写更多的代码。例如，一个简单的 `v-for` 循环，在模板中一行就能解决，而用 JSX 则需要写成 `items.map(item => <div key={item.id}>{item.name}</div>)`。
 
 #### c. Scoped CSS 的割裂感 (Scoped CSS Disconnection)
 
