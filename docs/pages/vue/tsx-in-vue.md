@@ -41,9 +41,10 @@
 
 #### b. 代码更啰嗦 (More Verbose)
 
--   对于简单的场景，JSX 往往比模板需要编写更多的代码。例如，一个简单的 `v-for` 循环，在模板中一行就能解决，而用 JSX 则需要写成 ```tsx
+-   对于简单的场景，JSX 往往比模板需要编写更多的代码。例如，一个简单的 `v-for` 循环，在模板中一行就能解决，而用 JSX 则需要写成 
+```tsx
     items.map(item => <div key={item.id}>{item.name}</div>)
-    ```
+```
 
 #### c. Scoped CSS 的割裂感 (Scoped CSS Disconnection)
 
@@ -63,17 +64,9 @@ Vue 2 和 Vue 3 对 TSX 的支持存在**根本性**的差异，这主要源于�
 | :--- | :--- | :--- |
 | **核心原理** | 基于 `@vue/babel-preset-jsx` 实现。与 Options API 深度绑定，强依赖 `this` 上下文来访问数据和方法。 | 作为**一等公民**进行支持。与 Composition API 完美结合，逻辑在 `setup` 函数中组织，完全不依赖 `this`。 |
 | **状态和逻辑** | 所有数据 (`data`) 和方法 (`methods`) 都必须从 `this` 上下文读取，如 `this.message`、`this.handleClick`。 | 状态通过 `ref`、`reactive` 创建，逻辑在 `setup` 中定义。代码组织更聚合，更易于复用。 |
-| **`v-model` 实现** | **相对复杂**。需要手动处理 `value` prop 和 `input` 事件，或依赖 Babel 插件进行转换。代码通常类似：```tsx
-<Input value={this.value} onInput={e => this.value = e.target.value} />
-``` | **简单直观**。遵循 `modelValue` prop 和 `onUpdate:modelValue` 事件的约定即可。Vue 3 的 JSX 转换也内置了对 `v-model` 的语法糖支持。 |
-| **插槽 (Slots)** | 通过 `this.$slots` 访问普通插槽，`this.$scopedSlots` 访问作用域插槽。API 分裂，容易混淆。 | 统一通过 `setup` 的 `context.slots` 或 `useSlots()` API 访问，API 一致且类型支持更好。在 JSX 中调用就像一个函数：```tsx
-slots.default()
-``` 或 ```tsx
-slots.header({ scopeValue })
-```。 |
-| **事件处理** | 事件需要写在 `on` 对象中，如 `on={{ click: this.handleClick }}`。原生DOM事件则需要 `nativeOn`。 | **与原生 HTML/React 一致**。事件直接以 `on` 前缀作为 prop 写入，如 ```tsx
-<button onClick={handleClick}></button>
-```。 |
+| **`v-model` 实现** | **相对复杂**。需要手动处理 `value` prop 和 `input` 事件，或依赖 Babel 插件进行转换。代码通常类似：`<Input value={this.value} onInput={e => this.value = e.target.value} />` | **简单直观**。遵循 `modelValue` prop 和 `onUpdate:modelValue` 事件的约定即可。Vue 3 的 JSX 转换也内置了对 `v-model` 的语法糖支持。 |
+| **插槽 (Slots)** | 通过 `this.$slots` 访问普通插槽，`this.$scopedSlots` 访问作用域插槽。API 分裂，容易混淆。 | 统一通过 `setup` 的 `context.slots` 或 `useSlots()` API 访问，API 一致且类型支持更好。在 JSX 中调用就像一个函数：`slots.default()` 或 `slots.header({ scopeValue })`。 |
+| **事件处理** | 事件需要写在 `on` 对象中，如 `on={{ click: this.handleClick }}`。原生DOM事件则需要 `nativeOn`。 | **与原生 HTML/React 一致**。事件直接以 `on` 前缀作为 prop 写入，如 `<button onClick={handleClick}></button>`。 |
 | **类型支持** | 相对薄弱，尤其在 Props、事件和插槽的类型推导上，往往需要开发者编写大量手动的类型定义和断言。 | **非常完善**。得益于 Composition API 和更强大的 TS 集成，Props、Emits、Slots 都能获得开箱即用的、精确的类型推断。 |
 
 **小结**：Vue 3 的 TSX 开发体验**远胜于** Vue 2。它更现代化、类型支持更完善、心智模型也与 Composition API 高度统一，真正让 TSX 成为了一个在 Vue 生态中实用且强大的选项。
