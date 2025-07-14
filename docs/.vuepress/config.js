@@ -52,6 +52,24 @@ module.exports = {
         ]
     },
     {
+        title: "项目经验剖析",
+        collapsable: true,
+        children: [
+            {
+                title: "深入探索文件上传：从组件设计到断点续传",
+                path: "/pages/project/file-upload-deep-dive.md"
+            },
+            {
+                title: "项目经验剖析：面试准备指南",
+                path: "/pages/project/interview-preparation.md"
+            },
+            {
+                title: "template-compiler-analysis",
+                path: "/pages/project/template-compiler-analysis.md"
+            }
+        ]
+    },
+    {
         title: "qwik",
         collapsable: true,
         children: [
@@ -180,6 +198,16 @@ module.exports = {
             {
                 title: "webpack plugin",
                 path: "/pages/webpack/plugin.md"
+            }
+        ]
+    },
+    {
+        title: "xiaochengxu",
+        collapsable: true,
+        children: [
+            {
+                title: "Taro 框架深度解析",
+                path: "/pages/xiaochengxu/taro.md"
             }
         ]
     }
